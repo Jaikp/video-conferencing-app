@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider} from '@clerk/nextjs'
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -25,11 +26,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
+      <ClerkProvider 
+        appearance={{
+          layout: {
+            logoImageUrl: '/icons/yoom-logo.svg',
+            socialButtonsVariant: 'iconButton'
+          },
+          variables: {
+            colorText: '#fff',
+            colorPrimary: '#0E78F9',
+            colorBackground: '#1c1f2e',
+            colorInputBackground: '#252a41',
+            colorInputText: '#fff'
+          }
+        }}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-dark-2 antialiased`}
       >
         {children}
       </body>
+      </ClerkProvider>
     </html>
   );
 }
